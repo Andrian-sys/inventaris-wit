@@ -6,7 +6,7 @@ Panduan lengkap untuk deploy aplikasi Inventaris WIT ke hosting gratis.
 
 - ✅ GitHub repository: `https://github.com/thisiskisur/inventaris-wit`
 - ✅ Vercel account (gratis)
-- ✅ Railway account (gratis)
+- ✅ InfinityFree account (gratis)
 
 ## 🌐 Frontend Deployment (Vercel)
 
@@ -26,7 +26,7 @@ Panduan lengkap untuk deploy aplikasi Inventaris WIT ke hosting gratis.
 ### Langkah 3: Environment Variables
 Tambahkan environment variable:
 ```
-VITE_API_URL=https://inventaris-wit-api.railway.app/api
+VITE_API_URL=https://inventaris-wit.infinityfreeapp.com/api
 ```
 
 ### Langkah 4: Deploy
@@ -34,24 +34,27 @@ VITE_API_URL=https://inventaris-wit-api.railway.app/api
 2. Tunggu proses build selesai
 3. Frontend akan tersedia di: `https://inventaris-wit.vercel.app`
 
-## 🔧 Backend Deployment (Railway)
+## 🔧 Backend Deployment (InfinityFree)
 
-### Langkah 1: Setup Railway
-1. Buka [Railway.app](https://railway.app)
-2. Login dengan GitHub account
-3. Klik **"New Project"**
-4. Pilih **"Deploy from GitHub repo"**
-5. Pilih repository `inventaris-wit`
+### Langkah 1: Setup InfinityFree
+1. Buka [InfinityFree.net](https://infinityfree.net)
+2. Klik **"Sign Up"** untuk buat account gratis
+3. Login ke dashboard
+4. Klik **"Create Account"** untuk buat hosting account
+5. Pilih **"Free Hosting"**
 
-### Langkah 2: Konfigurasi Service
-- **Root Directory**: `backend`
-- **Build Command**: `composer install --optimize-autoloader --no-dev`
-- **Start Command**: `php artisan serve --host=0.0.0.0 --port=$PORT`
+### Langkah 2: Konfigurasi Hosting
+- **Domain**: `inventaris-wit.infinityfreeapp.com` (gratis)
+- **PHP Version**: `8.1` (otomatis)
+- **MySQL**: `inventaris_wit` (gratis)
+- **cPanel**: Tersedia untuk upload file
+- **SSL**: Otomatis aktif
 
 ### Langkah 3: Setup Database
-1. Di project Railway, klik **"New"**
-2. Pilih **"Database"** → **"MySQL"**
-3. Railway akan otomatis set environment variables
+1. Di InfinityFree dashboard, buka **"MySQL Databases"**
+2. Buat database baru dengan nama: `inventaris_wit`
+3. Catat **Database Name**, **Username**, **Password**, dan **Host**
+4. Database akan otomatis tersedia
 
 ### Langkah 4: Environment Variables
 Tambahkan environment variables berikut:
@@ -60,14 +63,14 @@ Tambahkan environment variables berikut:
 APP_NAME="Inventaris WIT"
 APP_ENV=production
 APP_DEBUG=false
-APP_URL=https://inventaris-wit-api.railway.app
+APP_URL=https://inventaris-wit.infinityfreeapp.com
 
 DB_CONNECTION=mysql
-DB_HOST=${MYSQLHOST}
-DB_PORT=${MYSQLPORT}
-DB_DATABASE=${MYSQLDATABASE}
-DB_USERNAME=${MYSQLUSER}
-DB_PASSWORD=${MYSQLPASSWORD}
+DB_HOST=sql.infinityfree.com
+DB_PORT=3306
+DB_DATABASE=inventaris_wit
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
 
 CACHE_DRIVER=file
 SESSION_DRIVER=file
@@ -76,16 +79,16 @@ QUEUE_CONNECTION=sync
 CORS_ALLOWED_ORIGINS=https://inventaris-wit.vercel.app
 ```
 
-### Langkah 5: Deploy dan Setup Database
-1. Klik **"Deploy"**
-2. Setelah deploy selesai, buka **"Variables"** tab
-3. Tambahkan environment variables di atas
-4. Buka **"Deployments"** tab
-5. Klik **"Deploy"** lagi untuk apply variables
-6. Buka terminal Railway dan jalankan:
+### Langkah 5: Upload dan Setup Laravel
+1. Download project dari GitHub
+2. Extract folder `backend` ke local
+3. Edit file `.env` dengan database credentials
+4. Upload semua file ke **public_html** via cPanel File Manager
+5. Buka terminal via cPanel atau SSH dan jalankan:
    ```bash
-   php artisan migrate --seed
+   composer install --optimize-autoloader --no-dev
    php artisan key:generate
+   php artisan migrate --seed
    php artisan config:cache
    php artisan route:cache
    ```
@@ -97,14 +100,14 @@ Setelah backend berhasil deploy:
 1. Buka Vercel dashboard
 2. Pilih project `inventaris-wit`
 3. Buka **"Settings"** → **"Environment Variables"**
-4. Update `VITE_API_URL` dengan URL Railway yang baru
+4. Update `VITE_API_URL` dengan URL Render yang baru
 5. Redeploy frontend
 
 ## 🌍 Domain URLs
 
 ### Production URLs
 - **Frontend**: `https://inventaris-wit.vercel.app`
-- **Backend API**: `https://inventaris-wit-api.railway.app`
+- **Backend API**: `https://inventaris-wit.infinityfreeapp.com`
 - **GitHub**: `https://github.com/thisiskisur/inventaris-wit`
 
 ### Development URLs
@@ -119,9 +122,9 @@ Setelah backend berhasil deploy:
 3. **CORS Error**: Pastikan backend CORS settings benar
 
 ### Backend Issues
-1. **Database Connection**: Cek environment variables database
+1. **Database Connection**: Cek database credentials di `.env`
 2. **Migration Error**: Jalankan `php artisan migrate:fresh --seed`
-3. **500 Error**: Cek logs di Railway dashboard
+3. **500 Error**: Cek error logs di cPanel
 
 ### Common Commands
 ```bash
@@ -143,10 +146,10 @@ php artisan serve --port=8001
 - Pilih project
 - Lihat **"Analytics"** tab
 
-### Railway Logs
-- Buka Railway dashboard
-- Pilih service
-- Lihat **"Logs"** tab
+### InfinityFree Logs
+- Buka cPanel
+- Pilih **"Error Logs"**
+- Lihat error terbaru
 
 ## 🔐 Security
 
@@ -167,7 +170,7 @@ php artisan serve --port=8001
 3. Test semua fitur utama
 
 ### Test Backend API
-1. Buka `https://inventaris-wit-api.railway.app/api/asets`
+1. Buka `https://inventaris-wit.infinityfreeapp.com/api/asets`
 2. Pastikan response JSON valid
 3. Test authentication endpoints
 
@@ -175,7 +178,7 @@ php artisan serve --port=8001
 
 - ✅ Repository di GitHub
 - ✅ Frontend deployed di Vercel
-- ✅ Backend deployed di Railway
+- ✅ Backend deployed di InfinityFree
 - ✅ Database setup dan migrated
 - ✅ Environment variables configured
 - ✅ CORS settings correct
@@ -186,7 +189,7 @@ php artisan serve --port=8001
 ## 📞 Support
 
 Jika ada masalah deployment:
-1. Cek logs di Vercel/Railway dashboard
+1. Cek logs di Vercel dashboard dan cPanel
 2. Pastikan environment variables benar
 3. Test API endpoints secara manual
 4. Contact developer jika masih bermasalah

@@ -5,7 +5,7 @@ Sistem manajemen inventaris aset untuk perusahaan WIT dengan fitur peminjaman, t
 ## 🚀 Live Demo
 
 **Frontend (React):** [https://inventaris-wit.vercel.app](https://inventaris-wit.vercel.app)  
-**Backend API:** [https://inventaris-wit-api.vercel.app](https://inventaris-wit-api.vercel.app)
+**Backend API:** [https://inventaris-wit.infinityfreeapp.com](https://inventaris-wit.infinityfreeapp.com)
 
 ## ✨ Fitur Utama
 
@@ -209,8 +209,8 @@ POST   /api/barcode/scan
 3. Set output directory: `frontend/dist`
 4. Add environment variables
 
-### Backend (Railway/Heroku)
-1. Deploy Laravel backend to Railway or Heroku
+### Backend (InfinityFree)
+1. Deploy Laravel backend to InfinityFree
 2. Set environment variables
 3. Run migrations: `php artisan migrate --seed`
 
