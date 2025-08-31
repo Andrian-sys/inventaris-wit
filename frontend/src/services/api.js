@@ -10,7 +10,7 @@ const api = axios.create({
     'Accept': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
   },
-  withCredentials: true,
+  withCredentials: false,
 });
 
 // Request interceptor to add auth token
