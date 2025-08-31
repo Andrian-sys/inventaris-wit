@@ -21,20 +21,20 @@ class CorsMiddleware
         // Get the origin from the request
         $origin = $request->header('Origin');
         
-        // Allow specific origins
-        $allowedOrigins = [
-            'http://localhost:5173',
-            'http://localhost:3000',
-            'https://inventaris-wit.vercel.app',
-            'https://inventaris-a1zf6x0bq-thisiskisurs-projects.vercel.app'
-        ];
+                        // Allow localhost origins for development
+                $allowedOrigins = [
+                    'http://localhost:5173',
+                    'http://localhost:3000',
+                    'http://localhost:5174',
+                    'http://localhost:5175'
+                ];
 
-        // Check if origin is allowed
-        if (in_array($origin, $allowedOrigins) || str_contains($origin, 'vercel.app')) {
-            $response->headers->set('Access-Control-Allow-Origin', $origin);
-        } else {
-            $response->headers->set('Access-Control-Allow-Origin', '*');
-        }
+                // Check if origin is allowed
+                if (in_array($origin, $allowedOrigins)) {
+                    $response->headers->set('Access-Control-Allow-Origin', $origin);
+                } else {
+                    $response->headers->set('Access-Control-Allow-Origin', '*');
+                }
 
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, X-CSRF-TOKEN, Accept, Origin, Access-Control-Request-Method, Access-Control-Request-Headers');

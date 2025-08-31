@@ -2,10 +2,43 @@
 
 Sistem manajemen inventaris aset untuk perusahaan WIT dengan fitur peminjaman, tracking, dan pelaporan yang komprehensif.
 
-## 🚀 Live Demo
+## 🚀 Local Development
 
-**Frontend (React):** [https://inventaris-wit.vercel.app](https://inventaris-wit.vercel.app)  
-**Backend API:** [https://inventaris-wit.infinityfreeapp.com](https://inventaris-wit.infinityfreeapp.com)
+### 📋 Prerequisites
+
+- ✅ **XAMPP** (Apache + MySQL + PHP 8.1+)
+- ✅ **Node.js** (v16+)
+- ✅ **Composer** (PHP package manager)
+- ✅ **Git**
+
+### 🔧 Quick Start
+
+#### **1. Clone Repository**
+```bash
+git clone https://github.com/thisiskisur/inventaris-wit.git
+cd inventaris-wit
+```
+
+#### **2. Setup Backend (Laravel)**
+```bash
+cd backend
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve --port=8001
+```
+
+#### **3. Setup Frontend (React)**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+#### **4. Access Application**
+- **Frontend**: [http://localhost:5173](http://localhost:5173)
+- **Backend API**: [http://localhost:8001/api](http://localhost:8001/api)
 
 ## ✨ Fitur Utama
 
@@ -130,12 +163,12 @@ DB_PASSWORD=
 ## 👤 Default Users
 
 ### Admin
-- **Email:** admin@wit.id
+- **Email:** admin@wit.com
 - **Password:** password
 - **Role:** Admin
 
 ### Staff
-- **Email:** staff1@wit.id
+- **Email:** staff1@wit.com
 - **Password:** password
 - **Role:** Staff
 

@@ -22,16 +22,11 @@ return [
     'allowed_origins' => [
         'http://localhost:5173',
         'http://localhost:3000',
-        'https://inventaris-wit.vercel.app',
-        'https://inventaris-a1zf6x0bq-thisiskisurs-projects.vercel.app',
-        'https://*.vercel.app',
-        'https://*.infinityfreeapp.com'
+        'http://localhost:5174',
+        'http://localhost:5175',
     ],
 
-    'allowed_origins_patterns' => [
-        '/^https:\/\/.*\.vercel\.app$/',
-        '/^https:\/\/.*\.infinityfreeapp\.com$/'
-    ],
+    'allowed_origins_patterns' => [],
 
     'allowed_headers' => [
         'Content-Type',
