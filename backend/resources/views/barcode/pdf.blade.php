@@ -2,75 +2,63 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Barcode - {{ $aset->kode_aset }}</title>
+    <title>Barcode - {{ $aset->nama_barang }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-        }
-        .container {
             text-align: center;
+        }
+        .barcode-container {
+            border: 2px solid #333;
+            padding: 20px;
+            margin: 20px auto;
             max-width: 400px;
-            margin: 0 auto;
+            background: white;
         }
-        .barcode {
-            margin: 20px 0;
+        .asset-info {
+            margin-bottom: 20px;
         }
-        .info {
-            margin: 20px 0;
-            text-align: left;
-        }
-        .info table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .info td {
-            padding: 5px;
-            border-bottom: 1px solid #ddd;
-        }
-        .info td:first-child {
+        .asset-name {
+            font-size: 18px;
             font-weight: bold;
-            width: 40%;
+            margin-bottom: 10px;
+        }
+        .asset-code {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .barcode-image {
+            margin: 20px 0;
+        }
+        .barcode-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Barcode Aset</h2>
-        
-        <div class="barcode">
-            <img src="{{ $barcodeImage }}" alt="Barcode">
-            <p><strong>{{ $aset->kode_aset }}</strong></p>
+    <div class="barcode-container">
+        <div class="asset-info">
+            <div class="asset-name">{{ $aset->nama_barang }}</div>
+            <div class="asset-code">Kode: {{ $aset->kode_aset }}</div>
+            <div>Kategori: {{ $aset->kategori }}</div>
+            <div>Lokasi: {{ $aset->lokasi }}</div>
         </div>
         
-        <div class="info">
-            <table>
-                <tr>
-                    <td>Kode Aset:</td>
-                    <td>{{ $aset->kode_aset }}</td>
-                </tr>
-                <tr>
-                    <td>Nama Barang:</td>
-                    <td>{{ $aset->nama_barang }}</td>
-                </tr>
-                <tr>
-                    <td>Kategori:</td>
-                    <td>{{ $aset->kategori }}</td>
-                </tr>
-                <tr>
-                    <td>Lokasi:</td>
-                    <td>{{ $aset->lokasi }}</td>
-                </tr>
-                <tr>
-                    <td>Status:</td>
-                    <td>{{ $aset->status }}</td>
-                </tr>
-                <tr>
-                    <td>Tanggal Dibuat:</td>
-                    <td>{{ $aset->created_at->format('d/m/Y H:i') }}</td>
-                </tr>
-            </table>
+        <div class="barcode-image">
+            <img src="{{ $barcodeImage }}" alt="Barcode {{ $aset->kode_aset }}">
+        </div>
+        
+        <div class="footer">
+            <p>Inventaris WIT - {{ date('d/m/Y H:i') }}</p>
         </div>
     </div>
 </body>

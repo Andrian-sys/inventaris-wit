@@ -27,7 +27,10 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
+      console.log('Attempting login with:', { email, password: '***' });
       const response = await api.post('/login', { email, password });
+      console.log('Login response:', response.data);
+      
       const { token, user } = response.data.data;
       
       localStorage.setItem('token', token);
@@ -36,9 +39,32 @@ export const AuthProvider = ({ children }) => {
       
       return { success: true };
     } catch (error) {
+      console.error('Login error:', error);
+      console.error('Error response:', error.response);
+      console.error('Error status:', error.response?.status);
+      console.error('Error data:', error.response?.data);
+      
+      let message = 'Login failed';
+      
+      if (error.response?.data?.message) {
+        message = error.response.data.message;
+      } else if (error.response?.data?.errors) {
+        // Handle validation errors
+        const errors = error.response.data.errors;
+        if (errors.email) {
+          message = errors.email[0];
+        } else if (errors.password) {
+          message = errors.password[0];
+        }
+      } else if (error.code === 'NETWORK_ERROR' || !error.response) {
+        message = 'Unable to connect to server. Please check your connection.';
+      } else if (error.response?.status === 422) {
+        message = 'Invalid email or password format';
+      }
+      
       return { 
         success: false, 
-        message: error.response?.data?.message || 'Login failed' 
+        message: message
       };
     }
   };
@@ -66,9 +92,31 @@ export const AuthProvider = ({ children }) => {
       
       return { success: true };
     } catch (error) {
+      console.error('Registration error:', error);
+      
+      let message = 'Registration failed';
+      
+      if (error.response?.data?.message) {
+        message = error.response.data.message;
+      } else if (error.response?.data?.errors) {
+        // Handle validation errors
+        const errors = error.response.data.errors;
+        if (errors.email) {
+          message = errors.email[0];
+        } else if (errors.password) {
+          message = errors.password[0];
+        } else if (errors.name) {
+          message = errors.name[0];
+        } else if (errors.role) {
+          message = errors.role[0];
+        }
+      } else if (error.code === 'NETWORK_ERROR' || !error.response) {
+        message = 'Unable to connect to server. Please check your connection.';
+      }
+      
       return { 
         success: false, 
-        message: error.response?.data?.message || 'Registration failed' 
+        message: message
       };
     }
   };

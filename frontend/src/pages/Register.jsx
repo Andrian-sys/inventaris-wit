@@ -5,7 +5,7 @@ import { User, Mail, Lock, Building, ArrowLeft, Shield, Users } from 'lucide-rea
 
 const Register = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,29 +27,21 @@ const Register = () => {
       return;
     }
 
-    try {
-      const response = await fetch('http://localhost:8001/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        // Auto login after successful registration
-        await login(formData.email, formData.password);
-        navigate('/dashboard');
-      } else {
-        setError(data.message || 'Registration failed');
-      }
-    } catch (error) {
-      setError('Failed to connect to server');
-    } finally {
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters long');
       setLoading(false);
+      return;
     }
+
+    const result = await register(formData);
+    
+    if (result.success) {
+      navigate('/dashboard');
+    } else {
+      setError(result.message || 'Registration failed');
+    }
+    
+    setLoading(false);
   };
 
   const handleChange = (e) => {

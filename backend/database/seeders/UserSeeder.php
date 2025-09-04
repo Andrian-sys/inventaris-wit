@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -14,41 +13,20 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = [
-            [
-                'name' => 'Administrator',
-                'email' => 'admin@wit.com',
-                'password' => Hash::make('password'),
-                'role' => 'admin',
-            ],
-            [
-                'name' => 'Staff 1',
-                'email' => 'staff1@wit.com',
-                'password' => Hash::make('password'),
-                'role' => 'staff',
-            ],
-            [
-                'name' => 'Staff 2',
-                'email' => 'staff2@wit.com',
-                'password' => Hash::make('password'),
-                'role' => 'staff',
-            ],
-            [
-                'name' => 'Staff 3',
-                'email' => 'staff3@wit.com',
-                'password' => Hash::make('password'),
-                'role' => 'staff',
-            ],
-            [
-                'name' => 'Staff 4',
-                'email' => 'staff4@wit.com',
-                'password' => Hash::make('password'),
-                'role' => 'staff',
-            ],
-        ];
+        // Create default admin user
+        User::create([
+            'name' => 'Admin WIT',
+            'email' => 'admin@wit.id',
+            'password' => Hash::make('password123'),
+            'role' => 'admin',
+        ]);
 
-        foreach ($users as $user) {
-            User::create($user);
-        }
+        // Create default staff user
+        User::create([
+            'name' => 'Staff WIT',
+            'email' => 'staff@wit.id',
+            'password' => Hash::make('password123'),
+            'role' => 'staff',
+        ]);
     }
 }

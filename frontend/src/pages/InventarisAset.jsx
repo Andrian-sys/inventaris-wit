@@ -115,24 +115,24 @@ const InventarisAset = () => {
   };
 
   return (
-    <div className="p-6">
-      <div className="mb-8">
-        <div className="flex justify-between items-center">
+    <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Inventaris Aset</h1>
-            <p className="text-gray-600">Kelola data aset inventaris kantor</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Inventaris Aset</h1>
+            <p className="text-sm sm:text-base text-gray-600">Kelola data aset inventaris kantor dengan sistem terstruktur</p>
           </div>
           {isAdmin && (
             <button
               onClick={() => setShowForm(true)}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 flex items-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 flex items-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base"
             >
-              <Plus className="h-5 w-5" />
+              <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
               Tambah Aset
             </button>
           )}
           {!isAdmin && (
-            <div className="text-sm text-gray-600 bg-blue-50 px-4 py-2 rounded-lg border border-blue-200">
+            <div className="text-xs sm:text-sm text-gray-600 bg-blue-50 px-3 sm:px-4 py-2 rounded-lg border border-blue-200">
               <span className="font-medium">Staff Mode:</span> Anda hanya dapat melihat daftar aset yang tersedia
             </div>
           )}
@@ -140,8 +140,8 @@ const InventarisAset = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow p-4 sm:p-6 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
             <div className="relative">
@@ -151,7 +151,7 @@ const InventarisAset = () => {
                 placeholder="Cari aset..."
                 value={filters.search}
                 onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                className="pl-10 w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="pl-10 w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
           </div>
@@ -161,7 +161,7 @@ const InventarisAset = () => {
             <select
               value={filters.status}
               onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
               <option value="">Semua Status</option>
               <option value="tersedia">Tersedia</option>
@@ -176,13 +176,11 @@ const InventarisAset = () => {
             <select
               value={filters.kategori}
               onChange={(e) => setFilters(prev => ({ ...prev, kategori: e.target.value }))}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
               <option value="">Semua Kategori</option>
-              <option value="Elektronik">Elektronik</option>
-              <option value="Furniture">Furniture</option>
-              <option value="Kendaraan">Kendaraan</option>
-              <option value="Peralatan">Peralatan</option>
+              <option value="Elektronik">📱 Elektronik</option>
+              <option value="Non-Elektronik">🪑 Non-Elektronik</option>
             </select>
           </div>
 
@@ -191,7 +189,7 @@ const InventarisAset = () => {
             <select
               value={filters.lokasi}
               onChange={(e) => setFilters(prev => ({ ...prev, lokasi: e.target.value }))}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
               <option value="">Semua Lokasi</option>
               <option value="Gedung A">Gedung A</option>
@@ -203,17 +201,17 @@ const InventarisAset = () => {
         </div>
 
         {/* Export Buttons */}
-        <div className="mt-4 flex gap-2">
+        <div className="mt-4 flex flex-col sm:flex-row gap-2">
           <button
             onClick={() => handleExport('excel')}
-            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center gap-2"
+            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center gap-2 text-sm justify-center sm:justify-start"
           >
             <Download className="h-4 w-4" />
             Export Excel
           </button>
           <button
             onClick={() => handleExport('pdf')}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex items-center gap-2"
+            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex items-center gap-2 text-sm justify-center sm:justify-start"
           >
             <Download className="h-4 w-4" />
             Export PDF
@@ -233,44 +231,46 @@ const InventarisAset = () => {
               <thead className="bg-gray-50">
                 <tr>
                   <th 
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                    className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                     onClick={() => handleSort('kode_aset')}
                   >
                     <div className="flex items-center gap-1">
-                      Kode Aset
+                      <span className="hidden sm:inline">Kode Aset</span>
+                      <span className="sm:hidden">Kode</span>
                       {sortConfig.key === 'kode_aset' && (
-                        sortConfig.direction === 'asc' ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
+                        sortConfig.direction === 'asc' ? <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
                       )}
                     </div>
                   </th>
                   <th 
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                    className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                     onClick={() => handleSort('nama_barang')}
                   >
                     <div className="flex items-center gap-1">
-                      Nama Barang
+                      <span className="hidden sm:inline">Nama Barang</span>
+                      <span className="sm:hidden">Nama</span>
                       {sortConfig.key === 'nama_barang' && (
-                        sortConfig.direction === 'asc' ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
+                        sortConfig.direction === 'asc' ? <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" /> : <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
                       )}
                     </div>
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
                     Kategori
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
                     Lokasi
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Kondisi
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
                     Harga
                   </th>
                   {isAdmin && (
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Aksi
                     </th>
                   )}
@@ -279,43 +279,46 @@ const InventarisAset = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {asets.data?.map((aset) => (
                   <tr key={aset.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {aset.kode_aset}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {aset.nama_barang}
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <div>
+                        <div className="font-medium">{aset.nama_barang}</div>
+                        <div className="text-xs text-gray-500 sm:hidden">{aset.kategori} • {aset.lokasi}</div>
+                      </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden sm:table-cell">
                       {aset.kategori}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden md:table-cell">
                       {aset.lokasi}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getKondisiColor(aset.kondisi)}`}>
                         {aset.kondisi.replace('_', ' ')}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(aset.status)}`}>
                         {aset.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden lg:table-cell">
                       Rp {Number(aset.harga).toLocaleString('id-ID')}
                     </td>
                     {isAdmin && (
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setEditingAset(aset)}
-                            className="text-blue-600 hover:text-blue-900"
+                            className="text-blue-600 hover:text-blue-900 p-1"
                           >
                             <Edit className="h-4 w-4" />
                           </button>
                           <button
                             onClick={() => handleDelete(aset.id)}
-                            className="text-red-600 hover:text-red-900"
+                            className="text-red-600 hover:text-red-900 p-1"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
@@ -332,8 +335,8 @@ const InventarisAset = () => {
 
       {/* Pagination */}
       {asets.data && asets.data.length > 0 && (
-        <div className="mt-6 flex items-center justify-between">
-          <div className="text-sm text-gray-700">
+        <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs sm:text-sm text-gray-700 text-center sm:text-left">
             Menampilkan {asets.from || 0} sampai {asets.to || 0} dari {asets.total || 0} aset
           </div>
           <div className="flex gap-2">
@@ -344,7 +347,7 @@ const InventarisAset = () => {
                   const page = url.searchParams.get('page');
                   // Handle pagination
                 }}
-                className="px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50"
+                className="px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm hover:bg-gray-50"
               >
                 Previous
               </button>
@@ -356,7 +359,7 @@ const InventarisAset = () => {
                   const page = url.searchParams.get('page');
                   // Handle pagination
                 }}
-                className="px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50"
+                className="px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm hover:bg-gray-50"
               >
                 Next
               </button>
@@ -418,14 +421,14 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <h2 className="text-xl font-bold mb-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <h2 className="text-lg sm:text-xl font-bold mb-4">
           {aset ? 'Edit Aset' : 'Tambah Aset Baru'}
         </h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Kode Aset</label>
               <input
@@ -433,7 +436,7 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
                 required
                 value={formData.kode_aset}
                 onChange={(e) => setFormData(prev => ({ ...prev, kode_aset: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
 
@@ -443,24 +446,22 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
                 required
                 value={formData.kategori}
                 onChange={(e) => setFormData(prev => ({ ...prev, kategori: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               >
                 <option value="">Pilih Kategori</option>
-                <option value="Elektronik">Elektronik</option>
-                <option value="Furniture">Furniture</option>
-                <option value="Kendaraan">Kendaraan</option>
-                <option value="Peralatan">Peralatan</option>
+                <option value="Elektronik">📱 Elektronik</option>
+                <option value="Non-Elektronik">🪑 Non-Elektronik</option>
               </select>
             </div>
 
-            <div className="md:col-span-2">
+            <div className="sm:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Nama Barang</label>
               <input
                 type="text"
                 required
                 value={formData.nama_barang}
                 onChange={(e) => setFormData(prev => ({ ...prev, nama_barang: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
 
@@ -470,7 +471,7 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
                 required
                 value={formData.lokasi}
                 onChange={(e) => setFormData(prev => ({ ...prev, lokasi: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               >
                 <option value="">Pilih Lokasi</option>
                 <option value="Gedung A">Gedung A</option>
@@ -486,7 +487,7 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
                 required
                 value={formData.kondisi}
                 onChange={(e) => setFormData(prev => ({ ...prev, kondisi: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               >
                 <option value="baik">Baik</option>
                 <option value="rusak_ringan">Rusak Ringan</option>
@@ -502,7 +503,7 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
                 required
                 value={formData.penanggung_jawab}
                 onChange={(e) => setFormData(prev => ({ ...prev, penanggung_jawab: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
 
@@ -513,7 +514,7 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
                 required
                 value={formData.harga}
                 onChange={(e) => setFormData(prev => ({ ...prev, harga: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
 
@@ -524,7 +525,7 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
                 required
                 value={formData.tanggal_pembelian}
                 onChange={(e) => setFormData(prev => ({ ...prev, tanggal_pembelian: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
 
@@ -534,7 +535,7 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
                 required
                 value={formData.status}
                 onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value }))}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               >
                 <option value="tersedia">Tersedia</option>
                 <option value="dipinjam">Dipinjam</option>
@@ -544,18 +545,18 @@ const AsetForm = ({ aset, onClose, onSuccess }) => {
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-4">
+          <div className="flex flex-col sm:flex-row justify-end gap-2 pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 text-sm sm:text-base"
             >
               Batal
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 text-sm sm:text-base"
             >
               {loading ? 'Menyimpan...' : (aset ? 'Update' : 'Simpan')}
             </button>

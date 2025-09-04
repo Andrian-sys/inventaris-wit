@@ -173,13 +173,13 @@ const MutasiAset = () => {
   const rejectedCount = mutasiAsets.data?.filter(m => m.status === 'ditolak').length || 0;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8 p-4 sm:p-6">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 rounded-3xl p-8 text-white shadow-2xl">
+      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white shadow-2xl">
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <h1 className="text-4xl font-bold mb-3">Mutasi Aset</h1>
-            <p className="text-blue-100 text-lg leading-relaxed">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">Mutasi Aset</h1>
+            <p className="text-blue-100 text-sm sm:text-base lg:text-lg leading-relaxed">
               {isAdmin 
                 ? 'Kelola dan persetujui permintaan peminjaman aset dari staff'
                 : 'Ajukan permintaan peminjaman dan lihat riwayat mutasi aset Anda'
@@ -187,8 +187,8 @@ const MutasiAset = () => {
             </p>
           </div>
           <div className="hidden lg:block">
-            <div className="w-24 h-24 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center backdrop-blur-sm">
-              <Package className="h-12 w-12 text-white" />
+            <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white bg-opacity-20 rounded-2xl lg:rounded-3xl flex items-center justify-center backdrop-blur-sm">
+              <Package className="h-10 w-10 lg:h-12 lg:w-12 text-white" />
             </div>
           </div>
         </div>
@@ -213,78 +213,78 @@ const MutasiAset = () => {
       )}
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-1">Menunggu Persetujuan</p>
-              <p className="text-3xl font-bold text-yellow-600">{pendingCount}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Menunggu Persetujuan</p>
+              <p className="text-2xl sm:text-3xl font-bold text-yellow-600">{pendingCount}</p>
               <p className="text-xs text-gray-500 mt-1">Permintaan tertunda</p>
             </div>
-            <div className="w-14 h-14 bg-yellow-100 rounded-2xl flex items-center justify-center group-hover:bg-yellow-200 transition-colors duration-300">
-              <Clock className="h-7 w-7 text-yellow-600" />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-yellow-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:bg-yellow-200 transition-colors duration-300">
+              <Clock className="h-6 w-6 sm:h-7 sm:w-7 text-yellow-600" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group">
+        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-1">Disetujui</p>
-              <p className="text-3xl font-bold text-green-600">{approvedCount}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Disetujui</p>
+              <p className="text-2xl sm:text-3xl font-bold text-green-600">{approvedCount}</p>
               <p className="text-xs text-gray-500 mt-1">Permintaan disetujui</p>
             </div>
-            <div className="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center group-hover:bg-green-200 transition-colors duration-300">
-              <CheckCircle className="h-7 w-7 text-green-600" />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-green-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:bg-green-200 transition-colors duration-300">
+              <CheckCircle className="h-6 w-6 sm:h-7 sm:w-7 text-green-600" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group">
+        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group sm:col-span-2 lg:col-span-1">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-1">Ditolak</p>
-              <p className="text-3xl font-bold text-red-600">{rejectedCount}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Ditolak</p>
+              <p className="text-2xl sm:text-3xl font-bold text-red-600">{rejectedCount}</p>
               <p className="text-xs text-gray-500 mt-1">Permintaan ditolak</p>
             </div>
-            <div className="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center group-hover:bg-red-200 transition-colors duration-300">
-              <XCircle className="h-7 w-7 text-red-600" />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:bg-red-200 transition-colors duration-300">
+              <XCircle className="h-6 w-6 sm:h-7 sm:w-7 text-red-600" />
             </div>
           </div>
         </div>
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div className="flex items-center space-x-4">
+      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <button
               onClick={() => setShowForm(true)}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl font-semibold"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base justify-center sm:justify-start"
             >
-              <Plus className="h-5 w-5" />
+              <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
               {isAdmin ? 'Tambah Mutasi' : 'Pinjam Aset'}
             </button>
             
             {!isAdmin && (
-              <div className="flex items-center space-x-2 text-sm text-gray-600 bg-blue-50 px-4 py-2 rounded-xl border border-blue-200">
-                <Info className="h-4 w-4 text-blue-600" />
+              <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 bg-blue-50 px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl border border-blue-200">
+                <Info className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
                 <span>Permintaan Anda akan ditinjau oleh admin</span>
               </div>
             )}
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <button
               onClick={() => handleExport('excel')}
-              className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl font-semibold"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg sm:rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base justify-center sm:justify-start"
             >
               <Download className="h-4 w-4" />
               Export Excel
             </button>
             <button
               onClick={() => handleExport('pdf')}
-              className="bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-2 rounded-xl hover:from-red-700 hover:to-pink-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl font-semibold"
+              className="bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-2 rounded-lg sm:rounded-xl hover:from-red-700 hover:to-pink-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base justify-center sm:justify-start"
             >
               <Download className="h-4 w-4" />
               Export PDF
@@ -294,14 +294,14 @@ const MutasiAset = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 p-4 sm:p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
             <select
               value={filters.status}
               onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+              className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
             >
               <option value="">Semua Status</option>
               <option value="pending">Menunggu Persetujuan</option>
@@ -316,7 +316,7 @@ const MutasiAset = () => {
             <select
               value={filters.jenis_mutasi}
               onChange={(e) => setFilters(prev => ({ ...prev, jenis_mutasi: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+              className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
             >
               <option value="">Semua Jenis</option>
               <option value="peminjaman">Peminjaman</option>
@@ -330,7 +330,7 @@ const MutasiAset = () => {
               type="date"
               value={filters.tanggal_mulai}
               onChange={(e) => setFilters(prev => ({ ...prev, tanggal_mulai: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+              className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
             />
           </div>
 
@@ -340,17 +340,17 @@ const MutasiAset = () => {
               type="date"
               value={filters.tanggal_akhir}
               onChange={(e) => setFilters(prev => ({ ...prev, tanggal_akhir: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+              className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
             />
           </div>
         </div>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
-          <h2 className="text-xl font-bold text-gray-900">Daftar Mutasi Aset</h2>
-          <p className="text-gray-600 mt-1">
+      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+        <div className="p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900">Daftar Mutasi Aset</h2>
+          <p className="text-sm sm:text-base text-gray-600 mt-1">
             {isAdmin 
               ? 'Semua permintaan mutasi aset dari staff'
               : 'Riwayat permintaan mutasi aset Anda'
@@ -367,29 +367,29 @@ const MutasiAset = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Aset
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
                     Peminjam
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Jenis
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
                     Tanggal Pinjam
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
                     Tanggal Kembali
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
                     Keterangan
                   </th>
                   {isAdmin && (
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Aksi
                     </th>
                   )}
@@ -398,12 +398,12 @@ const MutasiAset = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {mutasiAsets.data?.length === 0 ? (
                   <tr>
-                    <td colSpan={isAdmin ? 8 : 7} className="px-6 py-12 text-center">
+                    <td colSpan={isAdmin ? 8 : 7} className="px-3 sm:px-6 py-8 sm:py-12 text-center">
                       <div className="flex flex-col items-center space-y-4">
-                        <Package className="h-16 w-16 text-gray-400" />
+                        <Package className="h-12 w-12 sm:h-16 sm:w-16 text-gray-400" />
                         <div>
-                          <p className="text-lg font-medium text-gray-900">Tidak ada data mutasi</p>
-                          <p className="text-gray-500">
+                          <p className="text-base sm:text-lg font-medium text-gray-900">Tidak ada data mutasi</p>
+                          <p className="text-sm sm:text-base text-gray-500">
                             {isAdmin 
                               ? 'Belum ada permintaan mutasi aset dari staff'
                               : 'Anda belum memiliki riwayat mutasi aset'
@@ -413,9 +413,9 @@ const MutasiAset = () => {
                         {!isAdmin && (
                           <button
                             onClick={() => setShowForm(true)}
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl font-semibold"
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
                           >
-                            <Plus className="h-5 w-5" />
+                            <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
                             Pinjam Aset Pertama
                           </button>
                         )}
@@ -425,22 +425,25 @@ const MutasiAset = () => {
                 ) : (
                   mutasiAsets.data?.map((mutasi) => (
                     <tr key={mutasi.id} className="hover:bg-gray-50 transition-colors duration-200">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                            <Package className="h-5 w-5 text-white" />
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
+                        <div className="flex items-center space-x-2 sm:space-x-3">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
+                            <Package className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-gray-900">
+                            <div className="text-xs sm:text-sm font-semibold text-gray-900">
                               {mutasi.aset?.kode_aset}
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-xs sm:text-sm text-gray-500">
                               {mutasi.aset?.nama_barang}
+                            </div>
+                            <div className="text-xs text-gray-400 sm:hidden">
+                              {mutasi.user?.name} • {new Date(mutasi.tanggal_pinjam).toLocaleDateString('id-ID')}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
                             <User className="h-4 w-4 text-white" />
@@ -455,8 +458,8 @@ const MutasiAset = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
+                        <span className={`inline-flex px-2 sm:px-3 py-1 text-xs font-semibold rounded-full ${
                           mutasi.jenis_mutasi === 'peminjaman' 
                             ? 'bg-blue-100 text-blue-800' 
                             : 'bg-green-100 text-green-800'
@@ -464,10 +467,10 @@ const MutasiAset = () => {
                           {mutasi.jenis_mutasi === 'peminjaman' ? 'Pinjam' : 'Kembalikan'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium hidden md:table-cell">
                         {new Date(mutasi.tanggal_pinjam).toLocaleDateString('id-ID')}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium hidden lg:table-cell">
                         {mutasi.tanggal_kembali ? (
                           <div className="flex items-center gap-2">
                             <span>{new Date(mutasi.tanggal_kembali).toLocaleDateString('id-ID')}</span>
@@ -482,32 +485,33 @@ const MutasiAset = () => {
                           <span className="text-gray-400">-</span>
                         )}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(mutasi.status)}`}>
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
+                        <span className={`inline-flex items-center gap-1 px-2 sm:px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(mutasi.status)}`}>
                           {getStatusIcon(mutasi.status)}
-                          {getStatusText(mutasi.status)}
+                          <span className="hidden sm:inline">{getStatusText(mutasi.status)}</span>
+                          <span className="sm:hidden">{getStatusText(mutasi.status).split(' ')[0]}</span>
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-600 hidden lg:table-cell">
                         {mutasi.keterangan || '-'}
                       </td>
                       {isAdmin && (
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          <div className="flex items-center space-x-2">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
+                          <div className="flex items-center space-x-1 sm:space-x-2">
                             <button
                               onClick={() => {
                                 setEditingMutasi(mutasi);
                                 setShowForm(true);
                               }}
-                              className="text-blue-600 hover:text-blue-900 p-2 rounded-lg hover:bg-blue-50 transition-all duration-200"
+                              className="text-blue-600 hover:text-blue-900 p-1 sm:p-2 rounded-lg hover:bg-blue-50 transition-all duration-200"
                             >
-                              <Edit className="h-4 w-4" />
+                              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                             <button
                               onClick={() => handleDelete(mutasi.id)}
-                              className="text-red-600 hover:text-red-900 p-2 rounded-lg hover:bg-red-50 transition-all duration-200"
+                              className="text-red-600 hover:text-red-900 p-1 sm:p-2 rounded-lg hover:bg-red-50 transition-all duration-200"
                             >
-                              <Trash2 className="h-4 w-4" />
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                           </div>
                         </td>
@@ -533,10 +537,10 @@ const MutasiAset = () => {
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">
                   {editingMutasi ? 'Edit Mutasi Aset' : 'Pinjam Aset Baru'}
                 </h2>
                 <button
@@ -546,12 +550,12 @@ const MutasiAset = () => {
                   }}
                   className="text-gray-400 hover:text-gray-600 p-2 rounded-lg hover:bg-gray-100 transition-all duration-200"
                 >
-                  <XCircle className="h-6 w-6" />
+                  <XCircle className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
               </div>
             </div>
             
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <MutasiForm 
                 onSubmit={handleSubmit}
                 onCancel={() => {
@@ -586,8 +590,8 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Pilih Aset {!isAdmin && <span className="text-red-500">*</span>}
@@ -595,7 +599,7 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
           <select
             value={formData.aset_id}
             onChange={(e) => setFormData(prev => ({ ...prev, aset_id: e.target.value }))}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+            className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
             required={!isAdmin}
             disabled={isAdmin}
           >
@@ -607,7 +611,7 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
             ))}
           </select>
           {!isAdmin && asets.length === 0 && (
-            <p className="text-sm text-red-500 mt-1">Tidak ada aset tersedia untuk dipinjam</p>
+            <p className="text-xs sm:text-sm text-red-500 mt-1">Tidak ada aset tersedia untuk dipinjam</p>
           )}
         </div>
 
@@ -618,7 +622,7 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
           <select
             value={formData.jenis_mutasi}
             onChange={(e) => setFormData(prev => ({ ...prev, jenis_mutasi: e.target.value }))}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+            className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
           >
             <option value="peminjaman">Peminjaman</option>
             <option value="pengembalian">Pengembalian</option>
@@ -626,7 +630,7 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Tanggal Pinjam <span className="text-red-500">*</span>
@@ -635,7 +639,7 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
             type="date"
             value={formData.tanggal_pinjam}
             onChange={(e) => setFormData(prev => ({ ...prev, tanggal_pinjam: e.target.value }))}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+            className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
             required
           />
         </div>
@@ -648,7 +652,7 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
             type="date"
             value={formData.tanggal_kembali}
             onChange={(e) => setFormData(prev => ({ ...prev, tanggal_kembali: e.target.value }))}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+            className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
           />
         </div>
       </div>
@@ -661,18 +665,18 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
           value={formData.keterangan}
           onChange={(e) => setFormData(prev => ({ ...prev, keterangan: e.target.value }))}
           rows={3}
-          className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+          className="w-full border border-gray-300 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-sm"
           placeholder="Masukkan keterangan tambahan (opsional)"
         />
       </div>
 
       {!isAdmin && (
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg sm:rounded-xl p-3 sm:p-4">
           <div className="flex items-start space-x-3">
-            <Info className="h-5 w-5 text-blue-600 mt-0.5" />
+            <Info className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 mt-0.5" />
             <div>
-              <p className="text-sm font-medium text-blue-900">Informasi Penting</p>
-              <p className="text-sm text-blue-700 mt-1">
+              <p className="text-xs sm:text-sm font-medium text-blue-900">Informasi Penting</p>
+              <p className="text-xs sm:text-sm text-blue-700 mt-1">
                 Permintaan peminjaman Anda akan ditinjau oleh admin. Anda akan mendapat notifikasi 
                 setelah admin menyetujui atau menolak permintaan Anda.
               </p>
@@ -681,17 +685,17 @@ const MutasiForm = ({ onSubmit, onCancel, asets, editingMutasi, isAdmin }) => {
         </div>
       )}
 
-      <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+      <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4 pt-4 sm:pt-6 border-t border-gray-200">
         <button
           type="button"
           onClick={onCancel}
-          className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-semibold"
+          className="px-4 sm:px-6 py-2 sm:py-3 border border-gray-300 text-gray-700 rounded-lg sm:rounded-xl hover:bg-gray-50 transition-all duration-200 font-semibold text-sm sm:text-base"
         >
           Batal
         </button>
         <button
           type="submit"
-          className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl"
+          className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl text-sm sm:text-base"
         >
           {editingMutasi ? 'Update Mutasi' : 'Ajukan Permintaan'}
         </button>

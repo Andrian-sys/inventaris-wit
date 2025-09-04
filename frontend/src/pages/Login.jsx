@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Eye, EyeOff, LogIn, Building } from 'lucide-react';
+import { Eye, EyeOff, LogIn, Building, Copy, Check } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -9,14 +9,43 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [copied, setCopied] = useState('');
   
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  const copyToClipboard = async (text, type) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(type);
+      setTimeout(() => setCopied(''), 2000);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
+  const fillCredentials = (email, password) => {
+    setEmail(email);
+    setPassword(password);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    // Basic validation
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      setLoading(false);
+      return;
+    }
+
+    if (!email.includes('@')) {
+      setError('Please enter a valid email address');
+      setLoading(false);
+      return;
+    }
 
     const result = await login(email, password);
     
@@ -135,6 +164,98 @@ const Login = () => {
               </button>
             </div>
           </form>
+
+          {/* Login Credentials Info */}
+          <div className="mt-8 p-4 sm:p-6 bg-blue-50 rounded-xl border border-blue-200">
+            <h3 className="text-sm sm:text-base font-semibold text-blue-900 mb-4 flex items-center">
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Akun Login Tersedia
+            </h3>
+            
+            {/* Admin Account */}
+            <div className="mb-4 p-3 bg-white rounded-lg border border-blue-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-semibold text-blue-800">Admin Account</span>
+                <button
+                  onClick={() => fillCredentials('admin@wit.id', 'password123')}
+                  className="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 transition-colors"
+                >
+                  Fill
+                </button>
+              </div>
+              <div className="space-y-1 text-xs">
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-700">Email:</span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-blue-600 font-mono">admin@wit.id</span>
+                    <button
+                      onClick={() => copyToClipboard('admin@wit.id', 'admin-email')}
+                      className="text-blue-500 hover:text-blue-700 transition-colors"
+                    >
+                      {copied === 'admin-email' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-700">Password:</span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-blue-600 font-mono">password123</span>
+                    <button
+                      onClick={() => copyToClipboard('password123', 'admin-password')}
+                      className="text-blue-500 hover:text-blue-700 transition-colors"
+                    >
+                      {copied === 'admin-password' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Staff Account */}
+            <div className="mb-4 p-3 bg-white rounded-lg border border-blue-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-semibold text-blue-800">Staff Account</span>
+                <button
+                  onClick={() => fillCredentials('staff@wit.id', 'password123')}
+                  className="text-xs bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700 transition-colors"
+                >
+                  Fill
+                </button>
+              </div>
+              <div className="space-y-1 text-xs">
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-700">Email:</span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-blue-600 font-mono">staff@wit.id</span>
+                    <button
+                      onClick={() => copyToClipboard('staff@wit.id', 'staff-email')}
+                      className="text-blue-500 hover:text-blue-700 transition-colors"
+                    >
+                      {copied === 'staff-email' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-700">Password:</span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-blue-600 font-mono">password123</span>
+                    <button
+                      onClick={() => copyToClipboard('password123', 'staff-password')}
+                      className="text-blue-500 hover:text-blue-700 transition-colors"
+                    >
+                      {copied === 'staff-password' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-xs text-blue-600 mt-3 italic text-center">
+              💡 Klik "Fill" untuk mengisi form otomatis, atau klik ikon copy untuk menyalin
+            </p>
+          </div>
 
           <div className="mt-8">
             <div className="relative">
